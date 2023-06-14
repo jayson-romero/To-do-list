@@ -1,0 +1,15 @@
+
+
+SERVER 
+step : 
+   * Install npm init 
+   * Install express, nodemon 
+   * Setup server (express) w/ nodemon
+   * Setup routes w/ express.Router()
+   * Install mysql2 
+   * Setup database (mysql2)
+   * Install bcpyrt, jsonwebtoken, cookie-parser, cors
+   * Setup user Authentication
+         -Register(bcpyrt)
+         -Login (bcpyrt, jsonwebtoken, cookie-parser,  cors)
+         -Logout 
