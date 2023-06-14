@@ -1,4 +1,3 @@
-import { CalendarDaysIcon, HandRaisedIcon } from '@heroicons/react/24/outline'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import {AiOutlineEdit, AiOutlineDelete} from 'react-icons/ai'
@@ -11,7 +10,7 @@ const ToDoList = () => {
   const {token} =  useLocalStorage()
   const [post , setPosts] = useState([])
   const [inputs, setInputs] = useState({
-    id: token.id,
+    id:  token? token.id : "",
     title: ""
   })
 
@@ -30,7 +29,7 @@ const ToDoList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(`http://localhost:3001/api/posts/retrieve/${token.id}`)
+        const response = await axios.post(`http://localhost:3001/api/posts/retrieve/${token? token.id : ""}`)
         setPosts(response.data)
       } catch (error) {
         console.log(error)
