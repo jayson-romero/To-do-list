@@ -16,7 +16,7 @@ app.use('/api/users', authRoutes)
 app.use('/api/posts', postsRoutes)
 
 
-const PORT =  3001
-app.listen(process.env.PORT || PORT, (req, res) => {
+const PORT =  3001   
+app.listen( PORT, (req, res) => {
    console.log(`Connected! `)
 })
