@@ -29,7 +29,7 @@ const ToDoList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(`https://mysql-api.herokuapp.com/api/posts/retrieve/${token? token.id : ""}`)
+        const response = await axios.post(`https://mysql-database-uvhm.onrender.com/api/posts/retrieve/${token? token.id : ""}`)
         setPosts(response.data)
       } catch (error) {
         console.log(error)
@@ -44,7 +44,7 @@ const ToDoList = () => {
       e.preventDefault()
      
       try {
-        const response = await axios.post(`https://jaysonromero.com/api/posts/add/${token.id}`, inputs)
+        const response = await axios.post(`https://mysql-database-uvhm.onrender.com/api/posts/add/${token.id}`, inputs)
         window.location.reload()
         window.alert(response.data)
       } catch (error) {
@@ -55,7 +55,7 @@ const ToDoList = () => {
   // DELETE DATA
   const handleDelete = async (id) => {
       try {
-        const response =  await axios.delete(`https://jaysonromero.com/api/posts/delete/${id}` )
+        const response =  await axios.delete(`https://mysql-database-uvhm.onrender.com/api/posts/delete/${id}` )
         window.alert(response.data)
         window.location.reload()
       } catch (error) {
@@ -78,7 +78,7 @@ const ToDoList = () => {
   const handleUpdatedClick = async (e) => {
     e.preventDefault
     try {
-      const response = await axios.put(`http://jaysonromero.com/posts/update/${inputs.id}`, inputs)
+      const response = await axios.put(`https://mysql-database-uvhm.onrender.com/posts/update/${inputs.id}`, inputs)
       window.alert(response.data)
       window.location.reload()
       console.log(response)

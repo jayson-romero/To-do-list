@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { useLocalStorage } from "./LocalStorage";
 import axios from "axios";
 
-const BASE_URL = 'https://jaysonromero.com/api/users';
+const BASE_URL = 'https://mysql-database-uvhm.onrender.com/api/users';
 
 // Create the APIContext
 const APIContext = createContext();
