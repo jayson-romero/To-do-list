@@ -78,7 +78,7 @@ const ToDoList = () => {
   const handleUpdatedClick = async (e) => {
     e.preventDefault
     try {
-      const response = await axios.put(`https://mysql-database-uvhm.onrender.com/posts/update/${inputs.id}`, inputs)
+      const response = await axios.put(`https://mysql-database-uvhm.onrender.com/api/posts/update/${inputs.id}`, inputs)
       window.alert(response.data)
       window.location.reload()
       console.log(response)
