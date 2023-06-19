@@ -23,8 +23,7 @@ const startServer = async () => {
       app.listen(PORT, () => console.log(`Connected! with port: ${PORT}`));
    } catch (error) {
       console.log(error)
-   
    }
 }
 
-startServer
+startServer()
