@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import {AiOutlineEdit, AiOutlineDelete} from 'react-icons/ai'
 import { useLocalStorage } from '../utils/LocalStorage'
 
-
-
+// const BASE_UR = 'http://localhost:3001/api/posts'
+const BASE_URL = 'https://mysql-database-uvhm.onrender.com/api/posts'
 
 const ToDoList = () => {
   const {token} =  useLocalStorage()
@@ -29,7 +29,7 @@ const ToDoList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(`http://localhost:3001/api/posts/retrieve/${token? token.id : ""}`)
+        const response = await axios.post(`${BASE_URL}/retrieve/${token? token.id : ""}`)
         setPosts(response.data)
       } catch (error) {
         console.log(error)
@@ -44,7 +44,7 @@ const ToDoList = () => {
       e.preventDefault()
      
       try {
-        const response = await axios.post(`http://localhost:3001/api/posts/add/${token.id}`, inputs)
+        const response = await axios.post(`${BASE_URL}/add/${token.id}`, inputs)
         window.location.reload()
         window.alert(response.data)
       } catch (error) {
@@ -55,7 +55,7 @@ const ToDoList = () => {
   // DELETE DATA
   const handleDelete = async (id) => {
       try {
-        const response =  await axios.delete(`http://localhost:3001/api/posts/delete/${id}` )
+        const response =  await axios.delete(`${BASE_URL}/delete/${id}` )
         window.alert(response.data)
         window.location.reload()
       } catch (error) {
@@ -78,7 +78,7 @@ const ToDoList = () => {
   const handleUpdatedClick = async (e) => {
     e.preventDefault
     try {
-      const response = await axios.put(`http://localhost:3001/api/posts/update/${inputs.id}`, inputs)
+      const response = await axios.put(`${BASE_URL}/update/${inputs.id}`, inputs)
       window.alert(response.data)
       window.location.reload()
       console.log(response)
