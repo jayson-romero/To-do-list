@@ -29,7 +29,7 @@ const ToDoList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(`https://mysql-database-uvhm.onrender.com/api/posts/retrieve/${token? token.id : ""}`)
+        const response = await axios.post(`http://localhost:3001/api/posts/retrieve/${token? token.id : ""}`)
         setPosts(response.data)
       } catch (error) {
         console.log(error)
@@ -44,7 +44,7 @@ const ToDoList = () => {
       e.preventDefault()
      
       try {
-        const response = await axios.post(`https://mysql-database-uvhm.onrender.com/api/posts/add/${token.id}`, inputs)
+        const response = await axios.post(`http://localhost:3001/api/posts/add/${token.id}`, inputs)
         window.location.reload()
         window.alert(response.data)
       } catch (error) {
@@ -55,7 +55,7 @@ const ToDoList = () => {
   // DELETE DATA
   const handleDelete = async (id) => {
       try {
-        const response =  await axios.delete(`https://mysql-database-uvhm.onrender.com/api/posts/delete/${id}` )
+        const response =  await axios.delete(`http://localhost:3001/api/posts/delete/${id}` )
         window.alert(response.data)
         window.location.reload()
       } catch (error) {
@@ -78,7 +78,7 @@ const ToDoList = () => {
   const handleUpdatedClick = async (e) => {
     e.preventDefault
     try {
-      const response = await axios.put(`https://mysql-database-uvhm.onrender.com/api/posts/update/${inputs.id}`, inputs)
+      const response = await axios.put(`http://localhost:3001/api/posts/update/${inputs.id}`, inputs)
       window.alert(response.data)
       window.location.reload()
       console.log(response)
@@ -98,36 +98,41 @@ const ToDoList = () => {
             <p className="mt-4 text-lg leading-8 text-gray-300">
             The To-Do List app is a powerful and intuitive task management tool designed to help you stay organized and increase productivity.
             </p>
-            <div className="mt-6  max-w-md gap-x-4">
-              
             
-              <input
-                onChange={handleChange}
-                id="title"
-                name="title"
-                type="title"
-                value={title}
-                className="flex w-[100%] rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 mb-5"
-                placeholder="Title"
-              />
+              
+            {token ? 
+            <div className="mt-6  max-w-md gap-x-4">
+               <input
+               onChange={handleChange}
+               id="title"
+               name="title"
+               type="title"
+               value={title}
+               className="flex w-[100%] rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6 mb-5"
+               placeholder="Title"
+             />
 
+            
+             <button
+               onClick={handleClick}
+               type="submit"
+               className={`flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 mt-5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 ${button ? "hidden" : ""}`}
+             >
+               Add
+             </button>
+
+             <button
+               onClick={handleUpdatedClick}
+               type="submit"
+               className={`flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 mt-5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 ${button ? "": "hidden"}`}
+             >
+               Update
+             </button>
+             </div>
+            :   <p className="mt-5 text-[32px] font-bold text-red-600">Sign-In to be able to add To Do List</p> }
              
-              <button
-                onClick={handleClick}
-                type="submit"
-                className={`flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 mt-5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 ${button ? "hidden" : ""}`}
-              >
-                Add
-              </button>
-
-              <button
-                onClick={handleUpdatedClick}
-                type="submit"
-                className={`flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 mt-5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 ${button ? "": "hidden"}`}
-              >
-                Update
-              </button>
-            </div>
+           
+            
           </div>
           <dl className="grid grid-cols-1 gap-x-8 gap-y-10 lg:pt-2">
 
@@ -145,7 +150,7 @@ const ToDoList = () => {
               </div>
             ))
             
-            : <p className="mt-2 font-semibold text-white">Don't have any To Do List</p>}
+            : <p className="mt-2 font-semibold text-white">{ token? "Don't have any To Do List"  : ""}</p>}
 
 
            
