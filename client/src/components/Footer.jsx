@@ -34,9 +34,9 @@ const Footer = () => {
      </p>
     
    </div>
-   <div className="flex flex-1 justify-end">
-     
-   </div>
+    <div className="flex flex-1 justify-end">
+      
+    </div>
  </div>
   )
 }
