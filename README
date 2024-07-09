@@ -1,15 +1,36 @@
+// Techniques for Passing Props (@components/TodoItem)
 
+// // SAMPLE PASSING PROPS (Spread operator)
+// export const Index = () => {
+// const toDoItem = {
+// text: "Wash Clothes",
+// completed: true,
+// important: true,
+// }
+// return <ToDoItem {...toDoItem} />
+// }
 
-SERVER 
-step : 
-   * Install npm init 
-   * Install express, nodemon 
-   * Setup server (express) w/ nodemon
-   * Setup routes w/ express.Router()
-   * Install mysql2 
-   * Setup database (mysql2)
-   * Install bcpyrt, jsonwebtoken, cookie-parser, cors
-   * Setup user Authentication
-         -Register(bcpyrt)
-         -Login (bcpyrt, jsonwebtoken, cookie-parser,  cors)
-         -Logout 
+    //--- PASSING TROUGH PROPS ---
+    // const ToDoItem = (props) => {
+    // const props.text = "wash clothes"
+    // const props.completed = true
+    // or
+    // const {text, completed} = props
+
+    //--- JAVASCRIPT DESTRUCTURING SYNTAX (best practices) ---
+
+// const ToDoItem = ({ text, completed, important }) => {
+// const [textState, setTextState] = useState(text)
+
+// return (
+// <div>
+// <h1 className={completed ? "completed" : ""}>
+// {" "}
+// {important ? "\*" : ""}
+// {text}
+// </h1>
+// </div>
+// )
+// }
+
+// export { ToDoItem }

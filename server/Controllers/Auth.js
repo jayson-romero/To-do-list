@@ -68,11 +68,15 @@ export const login = (req, res) => {
   
          //JWT  
    
-         const token = jwt.sign({ id: data[0].id }, "secret_key");
+         const token = jwt.sign({ id: data[0].id }, process.env.JWT_KEY);
          const {password, ...others } = data[0]
   
-         res.cookie("accessToken", token, {
-            httpOnly : true,
+         res.cookie("myCookie", token, {
+            expires: new Date(Date.now() + 3600000), // Cookie expires in 1 hour
+            //domain: 'example.com', // Set the domain for the cookie
+            path: '/', // Set the path for the cookie
+            //secure: true, // Set the "Secure" flag to send the cookie only over HTTPS
+            httpOnly: true // Set the "HTTP-Only" flag to prevent client-side JavaScript access
          }).status(200).json(others)
         })
 
@@ -85,11 +89,18 @@ export const login = (req, res) => {
    }
 }
 
-export const logout = (req, res) => {
+export const logout =  (req, res) => {
 
-    res.clearCookie("accessToken", {
+    res.clearCookie("myCookie", {
       secure:true,
       sameSite:"none"
    }).status(200).json("User has been logout")
+//  try {
+//     let token
+//     token = await req.cookies.myCookie
+//     res.json(token)
+//  } catch (error) {
+//     console.log(error)
+//  }
+  
 }
-

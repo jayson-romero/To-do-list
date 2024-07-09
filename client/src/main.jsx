@@ -1,17 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
-import { LocalStorageProvider} from './utils/LocalStorage'
-import { APIProvider } from './utils/API'
+import React from "react"
+import ReactDOM from "react-dom/client"
+import App from "./App.jsx"
+import "./index.css"
 
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <LocalStorageProvider>
-      <APIProvider>
-        <App/>
-      </APIProvider>
-    </LocalStorageProvider>
-  </React.StrictMode>,
+ReactDOM.createRoot(document.getElementById("root")).render(
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>
 )
