@@ -1,9 +1,21 @@
-import React from "react"
+import ToDoFilterToolbar from "./ToDoFilterToolbar"
 
-const ToDoListWithToolbar = () => {
+const ToDoListWithToolbar = ({
+	children,
+	displayStatus,
+	setDisplayStatus,
+	important,
+	setImportant,
+}) => {
 	return (
 		<div>
-			<h1>ToDoListWithToolbar</h1>
+			<ToDoFilterToolbar
+				displayStatus={displayStatus}
+				setDisplayStatus={setDisplayStatus}
+				important={important}
+				setImportant={setImportant}
+			/>
+			{children}
 		</div>
 	)
 }

@@ -1,18 +1,29 @@
+import { useContext } from "react"
+import { ThemeContext, ThemeProvider } from "../context/ThemeContext"
 // COMPONENTS
 import Header from "./Header"
 import Footer from "./Footer"
 
-const Layout = (props) => {
-	const layoutversion = "layout-version 2"
+const Inner = ({ children }) => {
+	const { darkTheme } = useContext(ThemeContext)
+
 	return (
 		<div
-			className="max-w-[780px] w-full mx-auto border p-5"
-			data-theme={props.darkTheme ? "dark" : "light"}
+			className="container mx-auto"
+			data-theme={darkTheme ? "dark" : "light"}
 		>
-			<Header {...props} layoutversion={layoutversion} />
-			{props.children}
+			<Header />
+			{children}
 			<Footer />
 		</div>
+	)
+}
+
+const Layout = (props) => {
+	return (
+		<ThemeProvider>
+			<Inner {...props} />
+		</ThemeProvider>
 	)
 }
 

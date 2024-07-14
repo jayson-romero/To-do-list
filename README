@@ -1,4 +1,6 @@
-// Techniques for Passing Props (@components/TodoItem)
+Working with React Component
+
+techniques for passing props
 
 // // SAMPLE PASSING PROPS (Spread operator)
 // export const Index = () => {
@@ -34,3 +36,53 @@
 // }
 
 // export { ToDoItem }
+
+three ways to share between components
+
+- pass props
+- use react context
+- use higher order components or hoc
+
+Tools available to nake dubugging experiences better
+-React library catches runtime errors in out browsers
+-React Dev Tools added 2 tabs to Chrome Debug Tools
+*Component Viewer
+*FlameGraph
+-ErrorBoundary class to wrap components for better error handling
+
+====Manageing State in React
+*History of react State
+-2014 Flux
+-2015 Redux
+-2015 Sateless functions components
+-2018 Context API
+-2019 Hooks
+
+*State = App data that may change
+
+*Eight Ways to handle State 
+1. URL  
+     (Current Item, Filiters, Pagination, Sorting)
+2. Web Storage 
+    (Items in Shopping cart, Partially completed form data)
+3. Local State 
+    (Forms, Toggles, Local Lists)
+4. Lifted State 
+    (Declare state in a parent component, pass state down via props)
+5. Derived State
+    Call .lengt on an array in render, Derive errorsExisit by checking if the errors array is empty
+6. Refs 
+    Dom Reference, State that isn't displated
+7. Context
+    Logged in user, authorization settings, Theming, Internationalization settings.
+8. Third Party State
+    - Redux , Mobx, Recoil
+
+
+
+
+HOW I Handle the State 
+1. create custom hooks which is useGeneralizedCrudMethods
+ - to handle all fetching data or initial state
+2. create custom hooks which is useTodosData handling the url
+3. create context which is ToDosContext to be able to centralize all state for todos data

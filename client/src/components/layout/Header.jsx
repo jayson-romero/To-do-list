@@ -1,6 +1,6 @@
-import React from "react"
+import { withTheme } from "../hocs/withTheme"
 
-const Header = ({ toggleTheme, darkTheme, layoutversion }) => {
+const Header = ({ darkTheme, toggleTheme }) => {
 	return (
 		<header className="flex justify-between">
 			<h2>To-do-List</h2>
@@ -19,11 +19,10 @@ const Header = ({ toggleTheme, darkTheme, layoutversion }) => {
 					<i className="fas fa-moon"></i>
 					<i className="fas fa-sun"></i>
 					<span className="ball"> </span>
-					<p>{layoutversion}</p>
 				</label>
 			</span>
 		</header>
 	)
 }
 
-export default Header
+export default withTheme(Header)

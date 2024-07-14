@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 
 // SAMPLE PASSING PROPS (Spread operator)
-export const Index = () => {
+const Index = () => {
 	const toDoItem = {
 		text: "Wash Clothes",
 		completed: true,
@@ -34,4 +34,4 @@ const ToDoItem = ({ text, completed, important }) => {
 	)
 }
 
-export { ToDoItem }
+export { ToDoItem, Index }

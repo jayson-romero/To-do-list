@@ -1,35 +1,35 @@
-import { useState } from "react"
+import React, { useState } from "react"
 // COMPONENTS
+
 import Layout from "./components/layout/Layout"
 import TodoListWithToolbar from "./components/todo/ToDoListWithToolbar"
 import ToDoManager from "./components/todo/ToDoManager"
 
+// CONTEXT PROVIDER
+import { TodosDataProvider } from "./components/context/TodosDataContext"
+
 function App() {
-	const [displayStatus, setDisplayStatus] = useState("all")
+	const [displayStatus, setDisplayStatus] = useState("all") // all, pending, completed
 	const [important, setImportant] = useState(false)
 	const [searchText, setSearchText] = useState("")
-	const [darkTheme, setDarkTheme] = useState(false)
-	const toggleTheme = () => setDarkTheme(!darkTheme)
-
 	return (
 		<>
-			<Layout toggleTheme={toggleTheme} darkTheme={darkTheme}>
-				<TodoListWithToolbar
-					displayStatus={displayStatus}
-					setDisplayStatus={setDisplayStatus}
-					important={important}
-					setImportant={setImportant}
-					searchText={searchText}
-					setSearchText={setSearchText}
-				>
-					<ToDoManager
+			<TodosDataProvider>
+				<Layout>
+					<TodoListWithToolbar
 						displayStatus={displayStatus}
+						setDisplayStatus={setDisplayStatus}
 						important={important}
-						searchText={searchText}
-						darkTheme={darkTheme}
-					/>
-				</TodoListWithToolbar>
-			</Layout>
+						setImportant={setImportant}
+					>
+						<ToDoManager
+							displayStatus={displayStatus}
+							important={important}
+							searchText={searchText}
+						/>
+					</TodoListWithToolbar>
+				</Layout>
+			</TodosDataProvider>
 		</>
 	)
 }
