@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react"
 import ToDo from "./ToDo"
 
-const ToDoList = ({ toDoList, displayStatus, important }) => {
+const ToDoList = ({
+	toDoList,
+	displayStatus,
+	important,
+	handleToggle,
+	handleEdit,
+	idUpdating,
+}) => {
 	return (
 		<div className="tasks">
 			{toDoList
@@ -24,7 +31,16 @@ const ToDoList = ({ toDoList, displayStatus, important }) => {
 					}
 				})
 				.map((todo) => {
-					return <ToDo key={todo.id} todoItem={todo} />
+					return (
+						<ToDo
+							key={todo.id}
+							todoItem={todo}
+							handleToggleCompleted={handleToggle}
+							// handleDelete={handleDelete}
+							handleEdit={handleEdit}
+							idUpdating={idUpdating}
+						/>
+					)
 				})}
 		</div>
 	)

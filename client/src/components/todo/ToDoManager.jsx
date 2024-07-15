@@ -1,9 +1,54 @@
 import ToDoList from "./ToDoList"
-import { useContext } from "react"
-import { ToDosDataContext } from "../context/TodosDataContext"
+import ToDoAddForm from "./ToDoAddForm"
+import ToDoEditForm from "./ToDoEditForm"
+import { useContext, useState } from "react"
+import { ToDosDataContext } from "../context/ToDosDataContext"
 
 const ToDoManager = ({ displayStatus, important, searchText, darkTheme }) => {
-	const { todoList } = useContext(ToDosDataContext)
+	// Call the ToDos Data Context
+	const { todoList, createTodo, updateTodo } = useContext(ToDosDataContext)
+
+	const [todoRecord, setTodoRecord] = useState({
+		todoText: "",
+		completed: false,
+		important: false,
+	})
+
+	const [idUpdating, setIdUpdating] = useState(0)
+	const [addOrEdit, setAddOrEdit] = useState("add") // "add" or "edit"
+
+	const handleToggle = (id) => {
+		const record = todoList.find((rec) => rec.id === id)
+
+		const recUpdated = { ...record, completed: !record.completed }
+
+		setIdUpdating(record.id)
+
+		updateTodo(recUpdated, () => {
+			setIdUpdating(0)
+		})
+	}
+
+	const handleUpdate = () => {
+		setIdUpdating(todoRecord.id)
+		setAddOrEdit("add")
+		updateTodo(todoRecord, () => {
+			setIdUpdating(0)
+		})
+	}
+
+	const handleEdit = (todoItem) => {
+		setAddOrEdit("edit")
+		setTodoRecord(todoItem)
+	}
+
+	const add = (todoText) => {
+		createTodo({
+			todoText: todoText,
+			completed: false,
+			important: false,
+		})
+	}
 
 	if (!todoList) {
 		return <div className="loading-state-canvas">Loading...</div>
@@ -12,19 +57,19 @@ const ToDoManager = ({ displayStatus, important, searchText, darkTheme }) => {
 	return (
 		<>
 			<div className="form">
-				{/* <ToDoAddForm
-          visible={addOrEdit === "add"}
-          add={add}
-          darkTheme={darkTheme}
-        />
+				<ToDoAddForm
+					visible={addOrEdit === "add"}
+					add={add}
+					darkTheme={darkTheme}
+				/>
 
-        <ToDoEditForm
-          visible={addOrEdit === "edit"}
-          update={handleUpdate}
-          todoRecord={todoRecord}
-          setTodoRecord={setTodoRecord}
-          setAddOrEdit={setAddOrEdit}
-        /> */}
+				<ToDoEditForm
+					visible={addOrEdit === "edit"}
+					update={handleUpdate}
+					todoRecord={todoRecord}
+					setTodoRecord={setTodoRecord}
+					setAddOrEdit={setAddOrEdit}
+				/>
 			</div>
 
 			<ToDoList
@@ -32,10 +77,10 @@ const ToDoManager = ({ displayStatus, important, searchText, darkTheme }) => {
 				important={important}
 				//   searchText={searchText}
 				toDoList={todoList}
-				//   handleToggle={handleToggle}
+				handleToggle={handleToggle}
 				//   handleDelete={handleDelete}
-				//   handleEdit={handleEdit}
-				//   idUpdating={idUpdating}
+				handleEdit={handleEdit}
+				idUpdating={idUpdating}
 				//   darkTheme={darkTheme}
 			/>
 		</>
