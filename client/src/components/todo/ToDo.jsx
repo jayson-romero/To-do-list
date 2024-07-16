@@ -3,7 +3,13 @@ import ErrorBoundary from "../common/ErrorBoundary"
 import ToDoItemText from "./ToDoItemText"
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline"
 
-const Inner = ({ todoItem, handleToggleCompleted, handleEdit, idUpdating }) => {
+const Inner = ({
+	todoItem,
+	handleToggleCompleted,
+	handleEdit,
+	idUpdating,
+	handleDelete,
+}) => {
 	return (
 		<div
 			key={todoItem.id}
@@ -43,12 +49,12 @@ const Inner = ({ todoItem, handleToggleCompleted, handleEdit, idUpdating }) => {
 				<button
 					className="btn delete"
 					title="Delete"
-					//  onClick={() => {
-					//    const response = window.confirm("Delete?");
-					//    if (response) {
-					//      handleDelete(todoItem.id);
-					//    }
-					//  }}
+					onClick={() => {
+						const response = window.confirm("Delete?")
+						if (response) {
+							handleDelete(todoItem.id)
+						}
+					}}
 				>
 					<TrashIcon className="h-6 w-6" />
 				</button>

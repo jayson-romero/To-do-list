@@ -122,10 +122,63 @@ const useGeneralizedCrudMethod = (url, errorNotificationFn) => {
 				if (callbackDone) callbackDone()
 			}
 		}
-		updateData()
+		if (data.find((rec) => rec.id == id)) {
+			updateData()
+		} else {
+			const errorString = `No data record found for id ${id}`
+			errorNotificationFn?.(errorString)
+		}
 	}
 
-	return { data, error, loadingStatus, createRecord, updateRecord }
+	// ======= DELETE DATA ========
+	const deleteRecord = (val, callbackDone) => {
+		// to make an array
+		const ids = Array.isArray(val) ? val : [val]
+
+		const deleteData = async () => {
+			// get all data
+			const startingData = data.map((rec) => {
+				return { ...rec }
+			})
+
+			try {
+				// to be able to refresh the data
+				setData((originalState) => {
+					return originalState.filter((rec) => !ids.includes(rec.id))
+				})
+				// delete the data
+				await axios.delete(`${baseUrl}${url}/${ids.toString()}`)
+
+				if (callbackDone) callbackDone()
+			} catch (e) {
+				setData(startingData)
+				const errorString = formatErrorString(e, url)
+				errorNotificationFn?.(errorString)
+				if (callbackDone) callbackDone()
+			}
+		}
+
+		function recordExists(id) {
+			const r = data.find((rec) => rec.id === id)
+			return r ? true : false
+		}
+
+		if (ids.every(recordExists)) {
+			deleteData(ids)
+		} else {
+			const errorString = `No data record found for id ${ids.toString()}`
+			errorNotificationFn?.(errorString)
+		}
+	}
+
+	return {
+		data,
+		error,
+		loadingStatus,
+		createRecord,
+		updateRecord,
+		deleteRecord,
+	}
 }
 
 export default useGeneralizedCrudMethod

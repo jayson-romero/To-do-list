@@ -6,7 +6,8 @@ import { ToDosDataContext } from "../context/ToDosDataContext"
 
 const ToDoManager = ({ displayStatus, important, searchText, darkTheme }) => {
 	// Call the ToDos Data Context
-	const { todoList, createTodo, updateTodo } = useContext(ToDosDataContext)
+	const { todoList, createTodo, updateTodo, deleteTodo } =
+		useContext(ToDosDataContext)
 
 	const [todoRecord, setTodoRecord] = useState({
 		todoText: "",
@@ -27,6 +28,10 @@ const ToDoManager = ({ displayStatus, important, searchText, darkTheme }) => {
 		updateTodo(recUpdated, () => {
 			setIdUpdating(0)
 		})
+	}
+
+	const handleDelete = (id) => {
+		deleteTodo(id)
 	}
 
 	const handleUpdate = () => {
@@ -75,13 +80,13 @@ const ToDoManager = ({ displayStatus, important, searchText, darkTheme }) => {
 			<ToDoList
 				displayStatus={displayStatus}
 				important={important}
-				//   searchText={searchText}
+				searchText={searchText}
 				toDoList={todoList}
 				handleToggle={handleToggle}
-				//   handleDelete={handleDelete}
+				handleDelete={handleDelete}
 				handleEdit={handleEdit}
 				idUpdating={idUpdating}
-				//   darkTheme={darkTheme}
+				darkTheme={darkTheme}
 			/>
 		</>
 	)

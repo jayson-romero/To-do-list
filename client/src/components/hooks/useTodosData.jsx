@@ -6,8 +6,14 @@ const useTodosData = () => {
 		console.log("Error From useTodosData", error)
 	}
 
-	const { data, error, loadingStatus, createRecord, updateRecord } =
-		useGeneralizedCrudMethod(url, errorNotificationFn)
+	const {
+		data,
+		error,
+		loadingStatus,
+		createRecord,
+		updateRecord,
+		deleteRecord,
+	} = useGeneralizedCrudMethod(url, errorNotificationFn)
 
 	const createTodo = (rec, callbackDone) => {
 		createRecord(rec, callbackDone)
@@ -16,12 +22,16 @@ const useTodosData = () => {
 		updateRecord(rec, callbackDone)
 	}
 
+	const deleteTodo = (id, callbackDone) => {
+		deleteRecord(id, callbackDone)
+	}
 	return {
 		todoList: data,
 		loadingStatus,
 		error,
 		createTodo,
 		updateTodo,
+		deleteTodo,
 	}
 }
 

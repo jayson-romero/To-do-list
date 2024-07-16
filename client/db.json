@@ -2,7 +2,7 @@
   "todos": [
     {
       "id": "1",
-      "todoText": "Clean car ni papa",
+      "todoText": "Clean car",
       "completed": false,
       "important": true
     },
@@ -13,44 +13,14 @@
       "important": true
     },
     {
-      "id": "3",
-      "todoText": "Take out garbage",
-      "completed": true,
-      "important": true
-    },
-    {
-      "id": "4",
-      "todoText": "Wash dishes fast",
+      "id": "6126",
+      "todoText": "Go to the gym",
       "completed": false,
       "important": true
     },
     {
-      "id": "5",
-      "todoText": "Do expense report",
-      "completed": false,
-      "important": true
-    },
-    {
-      "id": "6",
-      "todoText": "Walk the dog",
-      "completed": false,
-      "important": true
-    },
-    {
-      "id": "9fdf",
-      "todoText": "test todo",
-      "completed": false,
-      "important": false
-    },
-    {
-      "id": "a01d",
-      "todoText": "test natin ulit",
-      "completed": false,
-      "important": false
-    },
-    {
-      "id": "24a4",
-      "todoText": "test natin ulit",
+      "id": "ed29",
+      "todoText": "Go to bed before 9PM",
       "completed": false,
       "important": false
     }

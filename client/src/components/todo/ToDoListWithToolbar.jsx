@@ -6,6 +6,10 @@ const ToDoListWithToolbar = ({
 	setDisplayStatus,
 	important,
 	setImportant,
+	searchText,
+	setSearchText,
+	startTransition,
+	isPending,
 }) => {
 	return (
 		<div>
@@ -14,6 +18,10 @@ const ToDoListWithToolbar = ({
 				setDisplayStatus={setDisplayStatus}
 				important={important}
 				setImportant={setImportant}
+				searchText={searchText}
+				setSearchText={setSearchText}
+				startTransition={startTransition}
+				isPending={isPending}
 			/>
 			{children}
 		</div>
