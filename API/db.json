@@ -1,0 +1,28 @@
+{
+	"todos": [
+		{
+			"id": "1",
+			"todoText": "Clean car",
+			"completed": false,
+			"important": true
+		},
+		{
+			"id": "2",
+			"todoText": "Wash clothes adawdawd",
+			"completed": false,
+			"important": true
+		},
+		{
+			"id": "6126",
+			"todoText": "Go to the gym",
+			"completed": false,
+			"important": true
+		},
+		{
+			"id": "ed29",
+			"todoText": "Go to bed before 9PM",
+			"completed": false,
+			"important": false
+		}
+	]
+}
